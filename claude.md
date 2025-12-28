@@ -957,6 +957,29 @@ hs.application.launchOrFocus("Safari");
 
 **Command History**: In-session history via up/down arrows (persistence deferred to v2.0).
 
+**Error Handling**:
+
+hs2 uses REPL-style error handling where JavaScript errors are reported but don't terminate execution:
+
+```bash
+# First command errors but second still runs
+hs2 -c "undefined_variable" -c "console.log('still executes')"
+
+# Exit code is 0 because IPC succeeded
+echo $?  # Outputs: 0
+```
+
+**Error Types**:
+- **JavaScript errors**: Reported to stderr, execution continues, exit code 0
+- **IPC errors**: Reported to stderr, execution stops, exit code 69 or 65
+
+**Exit Code Semantics**:
+- `0` - IPC communication succeeded (JavaScript may have had errors)
+- `69` (EX_UNAVAILABLE) - Cannot connect to Hammerspoon 2
+- `65` (EX_DATAERR) - IPC protocol/communication error
+
+Scripts that need to detect JavaScript errors should parse stderr output rather than checking exit codes.
+
 **Special Variables in CLI Context**:
 - `_cli.remote` - IPC message port for communication
 - `_cli.quietMode` - Boolean indicating quiet mode
