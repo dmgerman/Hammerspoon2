@@ -21,6 +21,7 @@ import JavaScriptCore
     @objc var console: HSConsoleModule { get }
     @objc var hashing: HSHashModule { get }
     @objc var hotkey: HSHotkeyModule { get }
+    @objc var ipc: HSIPCModule { get }
     @objc var permissions: HSPermissionsModule { get }
     @objc var timer: HSTimerModule { get }
     @objc var window: HSWindowModule { get }
@@ -74,6 +75,7 @@ import JavaScriptCore
     @objc var console: HSConsoleModule { get { getOrCreate(name: "console", type: HSConsoleModule.self)}}
     @objc var hashing: HSHashModule { get { getOrCreate(name: "hashing", type: HSHashModule.self)}}
     @objc var hotkey: HSHotkeyModule { get { getOrCreate(name: "hotkey", type: HSHotkeyModule.self)}}
+    @objc var ipc: HSIPCModule { get { getOrCreate(name: "ipc", type: HSIPCModule.self)}}
     @objc var permissions: HSPermissionsModule { get { getOrCreate(name: "permissions", type: HSPermissionsModule.self)}}
     @objc var timer: HSTimerModule { get { getOrCreate(name: "timer", type: HSTimerModule.self)}}
     @objc var window: HSWindowModule { get { getOrCreate(name: "window", type: HSWindowModule.self)}}
